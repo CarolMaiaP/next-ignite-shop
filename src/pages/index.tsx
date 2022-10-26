@@ -9,7 +9,6 @@ import camiseta3 from '../assets/camisetas/3.png'
 
 export default function Home() {
   return (
-    <div>
       <HomeContainer>
         <Product>
           <Image src={camiseta1} alt="" width={520} height={480} />
@@ -29,6 +28,5 @@ export default function Home() {
           </footer>
         </Product>
       </HomeContainer>
-    </div>
   )
 }
