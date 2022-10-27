@@ -11,6 +11,7 @@ import camiseta2 from '../assets/camisetas/2.png'
 import camiseta3 from '../assets/camisetas/3.png'
 
 import 'keen-slider/keen-slider.min.css'
+import Stripe from "stripe"
 
 
 
@@ -66,13 +67,18 @@ export default function Home(props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await stripe.products.list()
+  const response = await stripe.products.list({
+    expand: ['data.default_price']
+  })
 
   const products = response.data.map((product) => {
+    const price = product.default_price as Stripe.Price
+
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
+      price: price.unit_amount / 100,
     }
   })
 
