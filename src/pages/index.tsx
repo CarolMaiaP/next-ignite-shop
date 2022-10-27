@@ -8,9 +8,13 @@ import camiseta2 from '../assets/camisetas/2.png'
 import camiseta3 from '../assets/camisetas/3.png'
 
 import 'keen-slider/keen-slider.min.css'
+import { useEffect, useState } from "react"
+import { json } from "stream/consumers"
 
 
 export default function Home() {
+  const [list, setList] = useState<number[]>([])
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -18,8 +22,15 @@ export default function Home() {
     }
   })
 
+  useEffect(() => { 
+    setTimeout(() => {
+      setList([1, 2, 3])
+    },2000)
+  }, [])
+
   return (
       <HomeContainer ref={sliderRef} className="keen-slider">
+        {JSON.stringify(list)}
         <Product className="keen-slider__slide">
           <Image src={camiseta1} alt="" width={520} height={480} />
 
