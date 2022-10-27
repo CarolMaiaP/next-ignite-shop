@@ -68,11 +68,16 @@ export default function Home(props) {
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await stripe.products.list()
 
-  console.log(response.data)
+  const products = response.data.map((product) => {
+    return {
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+    }
+  })
 
   return {
     props: {
-      list: [1, 2, 3]
     }
   }
 }
