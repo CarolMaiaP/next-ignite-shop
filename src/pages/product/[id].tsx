@@ -21,11 +21,17 @@ export default function Product({product}: ProductProps) {
   // Exemplo rota interna
   // const router = useRouter()
 
+<<<<<<< HEAD
   const [ isCreatingCheckoutSession, setIsCreatingCheckoutSession ] = useState(false)
 
   async function handleBuyProduct(){
     try {
       setIsCreatingCheckoutSession(true);
+=======
+
+  async function handleBuyProduct(){
+    try {
+>>>>>>> ad349c148f72cfb443e4ae323e3c78aee0dec1b5
       const response = await axios.post('/api/checkout', {
         priceId: product.defaultPriceId,
       })
@@ -40,7 +46,10 @@ export default function Product({product}: ProductProps) {
     } catch (err) {
       // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
 
+<<<<<<< HEAD
       setIsCreatingCheckoutSession(false)
+=======
+>>>>>>> ad349c148f72cfb443e4ae323e3c78aee0dec1b5
       alert('Falha ao redirecionar ao checkout')
     }
   }
