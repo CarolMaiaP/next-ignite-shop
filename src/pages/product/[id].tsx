@@ -1,5 +1,7 @@
+import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
+import { useState } from 'react'
 import Stripe from 'stripe'
 import { stripe } from '../../lib/stripe'
 import { ImageContainer, ProductContainer, ProductDetails } from '../../styles/pages/product'
@@ -16,9 +18,29 @@ interface ProductProps {
 }
 
 export default function Product({product}: ProductProps) {
+  // Exemplo rota interna
+  // const router = useRouter()
 
-  function handleBuyProduct(){
-    console.log(product.defaultPriceId);
+  const [] = useState()
+
+  async function handleBuyProduct(){
+    try {
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId,
+      })
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl
+
+      // Exemplo rota interna
+      // router.push('/checkout')
+
+    } catch (err) {
+      // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
+
+      alert('Falha ao redirecionar ao checkout')
+    }
   }
 
   return (
