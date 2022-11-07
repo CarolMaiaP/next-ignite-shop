@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { ImageContainer } from "../../styles/pages/success";
 import { SuccessContainer } from "../../styles/pages/success";
@@ -20,4 +21,14 @@ export default function Success() {
       </Link>
     </SuccessContainer>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
+  console.log(query)
+
+  return {
+    props: {
+      
+    }
+  }
 }
