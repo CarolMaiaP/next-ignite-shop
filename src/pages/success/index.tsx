@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { stripe } from "../../lib/stripe";
 import { ImageContainer } from "../../styles/pages/success";
 import { SuccessContainer } from "../../styles/pages/success";
 
@@ -24,11 +25,15 @@ export default function Success() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
-  console.log(query)
+  const sessionId = String(query.session_id);
+
+  const session = await stripe.checkout.sessions.retrieve(sessionId)
+
+  console.log(session)
 
   return {
     props: {
-      
+
     }
   }
 }
