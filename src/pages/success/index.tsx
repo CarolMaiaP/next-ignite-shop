@@ -27,9 +27,11 @@ export default function Success() {
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
   const sessionId = String(query.session_id);
 
-  const session = await stripe.checkout.sessions.retrieve(sessionId)
+  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+    expand: ['line_items']
+  })
 
-  console.log(session)
+  console.log(session.line_items.data)
 
   return {
     props: {
