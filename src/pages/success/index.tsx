@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ImageContainer } from "../../styles/pages/product";
+import { ImageContainer } from "../../styles/pages/success";
 import { SuccessContainer } from "../../styles/pages/success";
 
 export default function Success() {
